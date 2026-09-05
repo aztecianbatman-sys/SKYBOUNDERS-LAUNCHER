@@ -1,8 +1,16 @@
-export type Platform="java"|"bedrock"; export type Loader="vanilla"|"fabric"|"forge"|"neoforge"|"quilt"|"other"; export type PerformanceMode="potato"|"balanced"|"performance"|"custom"; export type DownloadState="queued"|"active"|"completed"|"failed"|"cancelled";
-export interface LauncherSettings{schemaVersion:number;gameDirectory:string;downloadDirectory:string;defaultInstanceId?:string;performance:PerformanceMode;reducedMotion:boolean;animatedBackground:boolean;accentIntensity:number;uiDensity:"comfortable"|"compact";defaultMemoryMb:number;startAtLogin:boolean;closeOnLaunch:boolean;microsoftClientId:string;curseforgeApiKey:string}
+export type Platform="java"|"bedrock";
+export type Loader="vanilla"|"fabric"|"forge"|"neoforge"|"quilt"|"other";
+export type PerformanceMode="potato"|"balanced"|"performance"|"custom";
+export type DownloadState="queued"|"active"|"completed"|"failed"|"cancelled";
+export interface LauncherSettings{schemaVersion:number;gameDirectory:string;downloadDirectory:string;defaultInstanceId?:string;performance:PerformanceMode;reducedMotion:boolean;animatedBackground:boolean;accentIntensity:number;uiDensity:"comfortable"|"compact";defaultMemoryMb:number;startAtLogin:boolean;closeOnLaunch:boolean;microsoftClientId:string;curseforgeApiKey:string;downloadConcurrency:number;javaSearchPaths:string[];autoUpdateMods:boolean;showSnapshots:boolean}
 export interface Account{id:string;displayName:string;avatar?:string;type:"microsoft"|"offline";provider:"microsoft"|"local";status:"active"|"needs-auth"|"offline";secureCredentialReference?:string;lastValidatedAt?:string;uuid?:string;accessToken?:string;expiresAt?:number}
-export interface Instance{id:string;name:string;platform:Platform;minecraftVersion:string;loader:Loader;loaderVersion?:string;directory:string;icon?:string;accountId?:string;javaRuntime?:string;memoryMb:number;jvmArgs:string;resolution?:{width:number;height:number;fullscreen:boolean};createdAt:string;lastPlayedAt?:string}
+export interface Instance{id:string;name:string;platform:Platform;minecraftVersion:string;loader:Loader;loaderVersion?:string;directory:string;icon?:string;accountId?:string;javaRuntime?:string;memoryMb:number;jvmArgs:string;resolution?:{width:number;height:number;fullscreen:boolean};createdAt:string;lastPlayedAt?:string;favorite?:boolean}
 export interface VersionSummary{id:string;type:string;releaseTime:string;url:string}
 export interface DownloadTask{id:string;label:string;source:string;url:string;destination:string;size?:number;downloaded:number;speed:number;eta?:number;status:DownloadState;error?:string;checksum?:{algorithm:"sha1"|"sha256";value:string}}
 export interface LaunchState{instanceId?:string;state:"IDLE"|"VALIDATING"|"PREPARING"|"DOWNLOADING"|"STARTING"|"RUNNING"|"STOPPING"|"STOPPED"|"ERROR";progress?:number;label?:string;pid?:number;startedAt?:number;exitCode?:number|null;error?:string}
 export interface HardwareInfo{cpu:string;cores:number;ramMb:number;gpu:string;arch:string;os:string;freeDiskMb:number}
+export interface ModFile{source:"modrinth"|"curseforge";projectId:string;versionId?:string;fileId:string;name:string;url:string;size?:number;sha1?:string;loaders?:string[];gameVersions?:string[]}
+export interface WorldRecord{name:string;path:string;sizeBytes:number;modifiedAt:string}
+export interface BackupRecord{id:string;instanceId:string;name:string;source:string;destination:string;createdAt:string;sizeBytes:number}
+export interface JavaRuntime{path:string;version:string;major:number;vendor?:string;arch?:string;source:"detected"|"managed"}
+export interface DiagnosticReport{createdAt:string;instanceId?:string;launcherVersion:string;os:string;arch:string;node:string;java?:JavaRuntime;recentLogs:string[];files:Record<string,string>}
