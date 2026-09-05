@@ -1,7 +1,56 @@
 {
-  "name":"skybounders-launcher","version":"0.1.0","private":true,"main":"dist-electron/main/main.js","description":"Skybounders — a polished Windows Minecraft Java launcher.",
-  "scripts":{"dev":"concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && tsc -p tsconfig.electron.json && electron . --dev\"","build":"tsc -p tsconfig.electron.json && vite build","dist":"npm run build && electron-builder","typecheck":"tsc -p tsconfig.json --noEmit && tsc -p tsconfig.electron.json --noEmit","test":"vitest run"},
-  "dependencies":{"@xmcl/core":"2.16.1","@xmcl/installer":"6.3.2","@xmcl/user":"4.4.2","react":"19.2.8","react-dom":"19.2.8"},
-  "devDependencies":{"@types/node":"24.3.0","@types/react":"19.1.12","@types/react-dom":"19.1.9","@vitejs/plugin-react":"5.0.4","concurrently":"9.2.1","electron":"44.2.0","electron-builder":"26.15.3","typescript":"7.0.2","vite":"8.2.2","vitest":"3.2.4","wait-on":"9.0.1"},
-  "build":{"appId":"com.skybounders.launcher","productName":"Skybounders Launcher","asar":true,"files":["dist/**/*","dist-electron/**/*","assets/**/*","package.json"],"win":{"target":[{"target":"nsis","arch":["x64"]}]},"nsis":{"oneClick":false,"allowToChangeInstallationDirectory":true,"createDesktopShortcut":true,"createStartMenuShortcut":true,"shortcutName":"Skybounders Launcher","deleteAppDataOnUninstall":false}}
+  "name": "skybounders-launcher",
+  "version": "0.2.0",
+  "description": "Skybounders — a polished, honest Minecraft Java launcher for Windows.",
+  "main": "dist-electron/main/main.js",
+  "author": "Skybounders",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && tsc -p tsconfig.electron.json && electron . --dev\"",
+    "build": "tsc -p tsconfig.electron.json && vite build",
+    "dist": "npm run build && electron-builder",
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.electron.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "self-check": "node scripts/self-check.mjs",
+    "start": "npm run dev",
+    "self-check:verbose": "node scripts/self-check.mjs --verbose"
+  },
+  "dependencies": {
+    "@xmcl/core": "2.16.1",
+    "@xmcl/installer": "6.3.2",
+    "@xmcl/user": "4.4.2",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "@types/react": "19.1.12",
+    "@types/react-dom": "19.1.9",
+    "@vitejs/plugin-react": "6.1.1",
+    "concurrently": "9.2.1",
+    "electron": "44.2.0",
+    "electron-builder": "26.15.3",
+    "typescript": "7.0.2",
+    "vite": "8.2.2",
+    "vitest": "3.2.4",
+    "wait-on": "9.0.1"
+  },
+  "build": {
+    "appId": "com.skybounders.launcher",
+    "productName": "Skybounders Launcher",
+    "asar": true,
+    "files": ["dist/**/*", "dist-electron/**/*", "assets/**/*", "package.json"],
+    "directories": {"output": "release"},
+    "win": {"target": [{"target": "nsis", "arch": ["x64"]}]},
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Skybounders Launcher",
+      "deleteAppDataOnUninstall": false
+    }
+  }
 }
